@@ -1,4 +1,3 @@
-import React from 'react'
 import { GoSearch, GoPerson } from "react-icons/go";
 import { IoCartOutline } from "react-icons/io5";
 
@@ -8,6 +7,8 @@ import { IoCartOutline } from "react-icons/io5";
 // 3. un signup
 // 4. un profile que al hacer click nos arroje un cartel que para entrar a perfil debemos registrarnos o logearnos
 // 5. un carrito, que al entrar nos invite a registrarnos o logearnos para usarlo
+
+
 
 function Nav() {
   return (

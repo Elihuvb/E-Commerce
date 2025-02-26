@@ -3,16 +3,27 @@ import { GoSearch, GoPerson } from "react-icons/go";
 import { IoCartOutline } from "react-icons/io5";
 import Inicio from './templates/Inicio'
 import Profile from './templates/Profile'
-import Loggin from './templates/Loggin'
-import Signup from './templates/Signup'
 import Kart from './templates/KartTemp'
+import Join from './templates/Join'
+import Signup from './templates/Signup'
+import Loggin from './templates/Loggin'
 
-const memory = localStorage.setItem("memory", "null")
+localStorage.setItem("memory", "no")
+const memoryGet = localStorage.getItem("memory")
 
 function App() {
 
+  function render(r) {
+    if (memoryGet === "no") {
+      return <Join />
+    } else {
+      return r
+    }
+  }
+
   return (
     <>
+    {console.log(memoryGet)}
       <Router>
         <nav>
           <ul>
@@ -31,10 +42,10 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<Inicio />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={render(<Profile />)} />
           <Route path="/loggin" element={<Loggin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/kart" element={memory == "null" ? <Loggin /> : <Kart />} />
+          <Route path="/kart" element={render(<Kart />)} />
         </Routes>
       </Router>
     </>

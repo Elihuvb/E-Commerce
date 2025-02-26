@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import { GoSearch, GoPerson } from "react-icons/go";
 import { IoCartOutline } from "react-icons/io5";
 
@@ -19,10 +20,10 @@ function Nav() {
         <button type="button"><GoSearch /></button>
         </li>
         <li>
-          <a href="#" className='btnNav'>Signup</a>
-          <a href="#" className='btnNav'>Login</a>
-          <a href="#" className='btnNav'><GoPerson/></a>
-          <a href="#" className='btnNav'><IoCartOutline /></a>
+          <Link to="/signup" className='btnNav'>Signup</Link>
+          <Link to="/loggin" className='btnNav'>Login</Link>
+          <Link to="/profile" className='btnNav'><GoPerson/></Link>
+          <Link to="/kart" className='btnNav'><IoCartOutline /></Link>
         </li>
       </ul>
     </nav>

@@ -1,4 +1,4 @@
-import{useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { IoCartOutline } from "react-icons/io5";
 
 function Inicio() {

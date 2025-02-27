@@ -4,7 +4,6 @@ import { IoCartOutline } from "react-icons/io5";
 import Inicio from './templates/Inicio'
 import Profile from './templates/Profile'
 import Kart from './templates/KartTemp'
-import Join from './templates/Join'
 import Signup from './templates/Signup'
 import Loggin from './templates/Loggin'
 
@@ -15,7 +14,7 @@ function App() {
 
   function render(r) {
     if (memoryGet === "no") {
-      return <Join />
+      return <Loggin />
     } else {
       return r
     }
@@ -35,8 +34,8 @@ function App() {
               <Link to="/" className='btnNav'>Inicio</Link>
               <Link to="/signup" className='btnNav'>Signup</Link>
               <Link to="/loggin" className='btnNav'>Login</Link>
-              <Link to="/profile" className='btnNav'><GoPerson/></Link>
-              <Link to="/kart" className='btnNav'><IoCartOutline /></Link>
+              <Link to={memoryGet === "no" ? "/loggin" : "/profile"} className='btnNav'><GoPerson/></Link>
+              <Link to={memoryGet === "no" ? "/loggin" : "/kart"} className='btnNav'><IoCartOutline /></Link>
             </li>
           </ul>
         </nav>

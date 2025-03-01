@@ -7,11 +7,13 @@ import Kart from './templates/KartTemp'
 import Signup from './templates/Signup'
 import Loggin from './templates/Loggin'
 
-localStorage.setItem("memory", "no")
-const memoryGet = localStorage.getItem("memory")
+localStorage.getItem("memory") ? (
+  localStorage.getItem("memory") === "no" ? console.log('Is "no"') : console.log('Is "yes"')
+) : localStorage.setItem("memory", "no")
 
 function App() {
-
+  const memoryGet = localStorage.getItem("memory")
+  
   function render(r) {
     if (memoryGet === "no") {
       return <Loggin />
@@ -27,16 +29,27 @@ function App() {
         <nav>
           <ul>
             <li>
-            <input type="search" placeholder="Buscar productos"/>
-            <button type="button"><GoSearch /></button>
+              <input type="search" placeholder="Buscar productos"/>
+              <button type="button"><GoSearch /></button>
             </li>
-            <li>
-              <Link to="/" className='btnNav'>Inicio</Link>
-              <Link to="/signup" className='btnNav'>Signup</Link>
-              <Link to="/loggin" className='btnNav'>Login</Link>
-              <Link to={memoryGet === "no" ? "/loggin" : "/profile"} className='btnNav'><GoPerson/></Link>
-              <Link to={memoryGet === "no" ? "/loggin" : "/kart"} className='btnNav'><IoCartOutline /></Link>
-            </li>
+            {
+              memoryGet === "yes" ? (
+                <li>
+                  <Link to="/" className='btnNav'>Inicio</Link>
+                  <Link to="/profile" className='btnNav'><GoPerson/></Link>
+                  <Link to="/kart" className='btnNav'><IoCartOutline /></Link>
+                </li>
+              ) : (
+                <li>
+                  <Link to="/" className='btnNav'>Inicio</Link>
+                  <Link to="/signup" className='btnNav'>Signup</Link>
+                  <Link to="/loggin" className='btnNav'>Login</Link>
+                  <Link to={memoryGet === "no" ? "/loggin" : "/profile"} className='btnNav'><GoPerson/></Link>
+                  <Link to={memoryGet === "no" ? "/loggin" : "/kart"} className='btnNav'><IoCartOutline /></Link>
+                </li>
+              )
+            }
+            
           </ul>
         </nav>
         <Routes>

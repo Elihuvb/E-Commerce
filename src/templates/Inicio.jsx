@@ -8,7 +8,7 @@ function Inicio() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://api.escuelajs.co/api/v1/products")
+      const response = await fetch("https://fakestoreapi.com/products")
       if (!response.ok) throw new Error("Error en la respuesta");
 
       const data = await response.json();
@@ -35,9 +35,7 @@ function Inicio() {
         {data.map((item) => {
           return (
             <li key={data.id}>
-              {item.images.map((i) => {
-                return <img key={i} src={i} alt="Image" />
-              })}
+              <img src={item.image} alt="Image" />
               <div>
               <h2>{item.title}</h2>
               <p>{item.description}</p>

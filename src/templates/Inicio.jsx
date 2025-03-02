@@ -9,9 +9,9 @@ function Inicio() {
   const fetchData = async () => {
     try {
       const response = await fetch("https://fakestoreapi.com/products")
-      if (!response.ok) throw new Error("Error en la respuesta");
+      if (!response.ok) throw new Error("Error en la respuesta"); // si la data no cargo correctamente
 
-      const data = await response.json();
+      const data = await response.json(); // convirtiendo la data en json para mejor manipulacion
       setData(data);
     } catch (error) {
       setError(error.message)
@@ -21,7 +21,7 @@ function Inicio() {
   }
 
   useEffect(() => {
-    fetchData();
+    fetchData(); // cargamos la data una vez y evitamos bucles
   }, [])
 
   if (loading) return <p>Cargando datos...</p>

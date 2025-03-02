@@ -36,7 +36,7 @@ function Loggin() {
           />
         </div>
         <div>
-          <button type="submit">Login</button>
+          <button type="submit" disabled={ !nameOrEmail == "" && !password == "" ? false : true }>Login</button>
         </div>
       </form>
     </div>

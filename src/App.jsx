@@ -7,16 +7,16 @@ import Kart from './templates/KartTemp'
 import Signup from './templates/Signup'
 import Loggin from './templates/Loggin'
 
-localStorage.getItem("memory") ? (
-  localStorage.getItem("memory") === "no" ? console.log('Is "no"') : console.log('Is "yes"')
-) : localStorage.setItem("memory", "no")
+localStorage.getItem("memory") ? ( // si "memory" existe invocamos el codigo
+  localStorage.getItem("memory") === "no" ? console.log('Is "no"') : console.log('Is "yes"') // muestra en consola lo que hay dentro de "memory"
+) : localStorage.setItem("memory", "no") // si "memory" no existe, lo creamos con "no" por defecto
 
 function App() {
-  const memoryGet = localStorage.getItem("memory")
+  const memoryGet = localStorage.getItem("memory") //guardamos "memory" en una constante
   
   function render(r) {
     if (memoryGet === "no") {
-      return <Loggin />
+      return <Loggin /> // si la cuenta no es recordada se redirecciona a login
     } else {
       return r
     }
@@ -32,26 +32,24 @@ function App() {
               <input type="search" placeholder="Buscar productos"/>
               <button type="button"><GoSearch /></button>
             </li>
-            {
-              memoryGet === "yes" ? (
-                <li>
-                  <Link to="/" className='btnNav'>Inicio</Link>
-                  <Link to="/profile" className='btnNav'><GoPerson/></Link>
-                  <Link to="/kart" className='btnNav'><IoCartOutline /></Link>
-                </li>
-              ) : (
-                <li>
-                  <Link to="/" className='btnNav'>Inicio</Link>
-                  <Link to="/signup" className='btnNav'>Signup</Link>
-                  <Link to="/loggin" className='btnNav'>Login</Link>
-                  <Link to={memoryGet === "no" ? "/loggin" : "/profile"} className='btnNav'><GoPerson/></Link>
-                  <Link to={memoryGet === "no" ? "/loggin" : "/kart"} className='btnNav'><IoCartOutline /></Link>
-                </li>
-              )
-            }
-            
+            <li>
+              <Link to="/" className='btnNav'>Inicio</Link>
+              {
+                memoryGet === "no" && (
+                  <>
+                    <Link to="/signup" className='btnNav'>Signup</Link>
+                    <Link to="/loggin" className='btnNav'>Login</Link>
+                  </>
+                )
+              }
+              <Link to={memoryGet === "no" ? "/loggin" : "/profile"} className='btnNav'><GoPerson/></Link>
+              <Link to={memoryGet === "no" ? "/loggin" : "/kart"} className='btnNav'><IoCartOutline /></Link>
+            </li>
           </ul>
         </nav>
+
+        {/* rutas */}
+
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/profile" element={render(<Profile />)} />

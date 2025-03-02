@@ -12,24 +12,28 @@ function Signup() {
   const handleSubmit = e => {
     e.preventDefault()
 
-    if (/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/.test(name) 
-      && !/^[@]+$/.test(email) 
-    && password.length >= 10 
+    if (/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/.test(name) // solo puede contener letras
+      && !/^[@]+$/.test(email) // debe tener "@"
+    && password.length >= 10 // no menos de 10 caracteres
     && password === confirm) {
       console.log("Credenciales validas")
       console.log(name, email, password, confirm, isCheck)
+      
+      localStorage.setItem("name", name)
+      localStorage.setItem("email", email)
+      localStorage.setItem("password", password) // todos los datos se guardaran en local storage para futuros usos
 
-      isCheck ? (
-        localStorage.setItem("memory", "yes")
-      ) : console.log("no recordar")
+      if (isCheck) {
+        localStorage.setItem("memory", "yes") // por si el usuario desea que su cuenta quede abierta
+       } else console.log("no recordar") 
     
       setName("")
       setEmail("")
       setPassword("")
       setConfirm("")
-      setError("");
+      setError(""); // reiniciando todos los campos
     } else {
-      setError("Algo esta mal")
+      setError("Algo esta mal") // si alguno de los campos arroja un error
       console.error(error)
     }
   }
@@ -86,7 +90,7 @@ function Signup() {
           onChange={() => setIsCheck(!isCheck)}
           />
         </div>
-        <button type="submit" disabled={!name =="" && !email == "" && !password == "" && !confirm == "" ? false : true}>Signup</button>
+        <button type="submit" disabled={!name =="" && !email == "" && !password == "" && !confirm == "" ? false : true}>Signup</button> {/* se habilita solo si todos los campos estan completos */}
       </form>
     </div>
   )

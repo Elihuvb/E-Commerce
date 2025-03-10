@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react'
 import { IoCartOutline } from "react-icons/io5";
-import Kart from './KartTemp'
 
 function Inicio() {
   const [data, setData] = useState([])
@@ -28,15 +27,17 @@ function Inicio() {
   if (loading) return <p>Cargando datos...</p>
   if (error) return <p>Error: {error}</p>
 
-  const addToKart = (id, title, description, price) => {
-    const product = { id: id, 
+  const addToKart = (id, image, title, description, price) => {
+    const product = { id: id,
+      image: image,
       title: title, 
       description: description, 
       price: price 
     };
-    
+    const actualKart = JSON.parse(localStorage.getItem("carrito")) || []
+    const newKart = [...actualKart, product]
     console.log(product)
-    localStorage.setItem(id, product)
+    localStorage.setItem("carrito", JSON.stringify(newKart))
   }
 
   return (

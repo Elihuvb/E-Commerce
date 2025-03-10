@@ -6,7 +6,6 @@ import Profile from './templates/Profile'
 import Kart from './templates/KartTemp'
 import Signup from './templates/Signup'
 import Loggin from './templates/Loggin'
-import { useEffect } from "react";
 
 localStorage.getItem("memory") ? ( // si "memory" existe invocamos el codigo
   localStorage.getItem("memory") === "no" ? console.log('Is "no"') : console.log('Is "yes"') // muestra en consola lo que hay dentro de "memory"

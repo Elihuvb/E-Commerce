@@ -32,6 +32,8 @@ function Signup() {
       setPassword("")
       setConfirm("")
       setError(""); // reiniciando todos los campos
+
+      window.location.href = "/"
     } else {
       setError("Algo esta mal") // si alguno de los campos arroja un error
       console.error(error)
